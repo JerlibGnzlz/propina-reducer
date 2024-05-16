@@ -1,13 +1,18 @@
+import { useReducer } from "react";
 import { MenuItems } from "./components/MenuItems";
 import { OrderContents } from "./components/OrderContents";
 import { OrderTotal } from "./components/OrderTotal";
 import { TipPorcentaje } from './components/TipPorcentaje';
 import { menuItems } from "./data/db";
 import { useOrder } from "./hooks/useOrder";
+import { initialState, orderReducer } from "./reducers/orderResucer";
 
 function App() {
 
   const { order, addItem, removeItem, tip, setTip, placeOrder } = useOrder()
+
+  const [state, dispatch] = useReducer(orderReducer, initialState)
+  console.log(state)
 
 
   return (
