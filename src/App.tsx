@@ -9,7 +9,7 @@ import { initialState, orderReducer } from "./reducers/orderResucer";
 
 function App() {
 
-  const { order, addItem, removeItem, tip, setTip, placeOrder } = useOrder()
+  const { order, removeItem, tip, setTip, placeOrder } = useOrder()
 
   const [state, dispatch] = useReducer(orderReducer, initialState)
   console.log(state)
@@ -31,7 +31,7 @@ function App() {
               <MenuItems
                 key={item.id}
                 item={item}
-                addItem={addItem}
+                dispatch={dispatch}
               />
             ))}
           </div>
