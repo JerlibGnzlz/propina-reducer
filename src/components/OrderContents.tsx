@@ -1,13 +1,14 @@
-import { MenuItem, OrderItem } from "../types"
+import { OderActions } from "../reducers/orderResucer"
+import { OrderItem } from "../types"
 
 type OrderContentsProps = {
 
   order: OrderItem[]
-  removeItem: (id: MenuItem["id"]) => void
+  dispatch: React.Dispatch<OderActions>
 }
 
 
-export const OrderContents = ({ order, removeItem }: OrderContentsProps) => {
+export const OrderContents = ({ order, dispatch }: OrderContentsProps) => {
   return (
     <div>
       <h2 className="font-black text-4xl mx-3">Consumo</h2>
@@ -26,7 +27,7 @@ export const OrderContents = ({ order, removeItem }: OrderContentsProps) => {
               </p>
             </div>
             <button className="bg-red-600 rounded-full w-8 h-8 text-white font-black"
-              onClick={() => removeItem(item.id)}
+              onClick={() => dispatch({ type: "removeItem", payload: { id: item.id } })}
             >
               x
 

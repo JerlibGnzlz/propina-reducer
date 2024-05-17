@@ -9,10 +9,10 @@ import { initialState, orderReducer } from "./reducers/orderResucer";
 
 function App() {
 
-  const { order, removeItem, tip, setTip, placeOrder } = useOrder()
+  const { tip, setTip, placeOrder } = useOrder()
 
   const [state, dispatch] = useReducer(orderReducer, initialState)
-  console.log(state)
+
 
 
   return (
@@ -38,11 +38,11 @@ function App() {
         </div>
 
         <div className="border border-dashed border-slate-300 ml-5 rounded-lg space-y-10">
-          {order.length > 0 ? (
+          {state.order.length > 0 ? (
             <>
               <OrderContents
-                order={order}
-                removeItem={removeItem}
+                order={state.order}
+                dispatch={dispatch}
               />
 
               <TipPorcentaje
@@ -51,7 +51,7 @@ function App() {
               />
 
               <OrderTotal
-                order={order}
+                order={state.order}
                 tip={tip}
                 placeOrder={placeOrder}
               />
