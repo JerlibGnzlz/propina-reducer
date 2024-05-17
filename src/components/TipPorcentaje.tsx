@@ -1,3 +1,5 @@
+import { OderActions } from "../reducers/orderResucer"
+
 const tipOptions = [
     {
         id: 'tip-10',
@@ -17,12 +19,12 @@ const tipOptions = [
 ]
 
 type TipPorcentajeProps = {
-    setTip: React.Dispatch<React.SetStateAction<number>>
+    dispatch: React.Dispatch<OderActions>
     tip: number
 }
 
 
-export const TipPorcentaje = ({ setTip, tip }: TipPorcentajeProps) => {
+export const TipPorcentaje = ({ tip, dispatch }: TipPorcentajeProps) => {
     return (
         <div>
             <h3 className="font-black text-2xl">Propina:</h3>
@@ -38,8 +40,8 @@ export const TipPorcentaje = ({ setTip, tip }: TipPorcentajeProps) => {
                             type="radio"
                             name="tip"
                             value={tipOtion.value}
-                            onChange={(e) => setTip(+e.target.value)}
-                            checked={tipOtion.value == tip}
+                            onChange={(e) => dispatch({ type: "addTip", payload: { value: +e.target.value } })}
+                            checked={tipOtion.value === tip}
                         />
                     </div>
                 ))}
